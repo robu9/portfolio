@@ -8,22 +8,40 @@ import { Badge } from "@/components/ui/badge";
 import { DATA } from "@/data/resume";
 import Link from "next/link";
 import Markdown from "react-markdown";
+// page.tsx (top of file, after imports)
+const SKILL_ICONS: Record<string, { imgSrc: string; imgAlt: string }> = {
+  "React": { imgSrc: "https://img.icons8.com/?size=100&id=NfbyHexzVEDk&format=png", imgAlt: "React" },
+  "Next.js": { imgSrc: "https://img.icons8.com/?size=100&id=yUdJlcKanVbh&format=png", imgAlt: "Next.js" },
+  "TypeScript": { imgSrc: "https://img.icons8.com/?size=100&id=uJM6fQYqDaZK&format=png", imgAlt: "TypeScript" },
+  "Node.js": { imgSrc: "https://img.icons8.com/?size=100&id=54087&format=png", imgAlt: "Node.js" },
+  "Python": { imgSrc: "https://img.icons8.com/?size=100&id=13441&format=png", imgAlt: "Python" },
+  "C++": { imgSrc: "https://img.icons8.com/?size=100&id=40670&format=png", imgAlt: "C++" },
+  "JavaScript": { imgSrc: "https://img.icons8.com/?size=100&id=108784&format=png", imgAlt: "JavaScript" },
+  "PostgreSQL": { imgSrc: "https://img.icons8.com/?size=100&id=38561&format=png", imgAlt: "PostgreSQL" },
+  "MongoDB": { imgSrc: "https://img.icons8.com/?size=100&id=74402&format=png", imgAlt: "MongoDB" },
+  "TailwindCSS": { imgSrc: "https://img.icons8.com/?size=100&id=7gdY5qNXaKC0&format=png", imgAlt: "TailwindCSS" },
+  "LangChain": { imgSrc: "https://www.infralovers.com/images/posts/ai-for-devops-engineers/langchain_logo.png", imgAlt: "LangChain" },
+  "YOLOv8": { imgSrc: "https://img.icons8.com/?size=100&id=sO8FyRETxIeA&format=png&color=000000", imgAlt: "YOLOv8" },
+  "TensorFlow": { imgSrc: "https://img.icons8.com/?size=100&id=n3QRpDA7KZ7P&format=png&color=000000", imgAlt: "TensorFlow" },
+  "PyTorch": { imgSrc: "https://img.icons8.com/?size=100&id=jH4BpkMnRrU5&format=png", imgAlt: "PyTorch" },
+};
+
 
 const BLUR_FADE_DELAY = 0.04;
 
 export default function Page() {
   return (
-    <main className="flex flex-col items-center px-1 pt-0">
+     <main className="flex flex-col min-h-[100dvh] space-y-10">
       {/* BIG CARD WRAPPER */}
-      <div className="flex flex-col  z-[10] space-y-10 px-10 max-[450px]:px-4 py-4 relative border-dashed border dark:border-white/30 border-black/30 rounded-xl">
+      {/* <div className="flex flex-col  z-[10] space-y-10 px-10 max-[450px]:px-4 py-4 relative border-dashed border dark:border-white/30 border-black/30 rounded-xl"> */}
         {/* SECTION SEPARATOR STYLE */}
-        <style>{`
+        {/* <style>{`
           .section-divider {
             border-bottom: 1px dashed #6b7280;
             padding-bottom: 48px;
             margin-bottom: 48px;
           }
-        `}</style>
+        `}</style> */}
 
         {/* HERO */}
         <section id="hero" className="section-divider">
@@ -92,7 +110,7 @@ export default function Page() {
         </section>
 
         {/* EDUCATION */}
-        <section id="education" className="section-divider">
+        {/* <section id="education" className="section-divider">
           <div className="flex min-h-0 flex-col gap-y-3">
             <BlurFade delay={BLUR_FADE_DELAY * 7}>
               <h2 className="text-xl font-bold">Education</h2>
@@ -114,23 +132,31 @@ export default function Page() {
               </BlurFade>
             ))}
           </div>
-        </section>
+        </section> */}
 
         {/* SKILLS */}
-        <section id="skills" className="section-divider">
-          <div className="flex min-h-0 flex-col gap-y-3">
-            <BlurFade delay={BLUR_FADE_DELAY * 9}>
-              <h2 className="text-xl font-bold">Skills</h2>
-            </BlurFade>
-            <div className="flex flex-wrap gap-1">
-              {DATA.skills.map((skill, id) => (
-                <BlurFade key={skill} delay={BLUR_FADE_DELAY * 10 + id * 0.05}>
-                  <Badge key={skill}>{skill}</Badge>
-                </BlurFade>
-              ))}
-            </div>
-          </div>
-        </section>
+<section id="skills" className="section-divider">
+  <div className="flex min-h-0 flex-col gap-y-3">
+    <BlurFade delay={BLUR_FADE_DELAY * 9}>
+      <h2 className="text-xl font-bold">Skills</h2>
+    </BlurFade>
+
+    <div className="flex flex-wrap gap-1">
+      {DATA.skills.map((skill: string, id: number) => {
+        const icon = SKILL_ICONS[skill];
+        return (
+          <BlurFade key={skill} delay={BLUR_FADE_DELAY * 10 + id * 0.05}>
+            <Badge imgSrc={icon?.imgSrc} imgAlt={icon?.imgAlt ?? skill}>
+              {skill}
+            </Badge>
+          </BlurFade>
+        );
+      })}
+    </div>
+  </div>
+</section>
+
+
 
         {/* PROJECTS */}
         <section id="projects" className="section-divider">
@@ -232,7 +258,7 @@ export default function Page() {
             </BlurFade>
           </div>
         </section>
-      </div>
+      {/* </div> */}
     </main>
   );
 }

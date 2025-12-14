@@ -15,13 +15,19 @@ export const DATA = {
 
   skills: [
     "React",
+    "Express.js",
     "Next.js",
     "TypeScript",
     "Node.js",
+    "Shadcn UI",
+    "Figma",
     "Python",
     "C++",
     "JavaScript",
+    "GraphQL",
+    "Socket.io",
     "PostgreSQL",
+    "Prisma ORM",
     "MongoDB",
     "TailwindCSS",
     "LangChain",
@@ -142,7 +148,7 @@ export const DATA = {
       ],
       links: [],
       image: "",
-      video: "",
+      video: "/paxio.mp4"
     },
     {
       title: "Real-time Object Detection System",
@@ -160,7 +166,7 @@ export const DATA = {
       ],
       links: [],
       image: "",
-      video: "",
+      video: "/paxio.mp4",
     },
     {
       title: "AutoML Tool",
@@ -177,7 +183,7 @@ export const DATA = {
       ],
       links: [],
       image: "",
-      video: "",
+      video: "/paxio.mp4",
     },
   ],
 
